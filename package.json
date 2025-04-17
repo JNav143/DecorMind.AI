@@ -34,13 +34,15 @@
     "resend": "^4.2.0",
     "swiper": "^11.2.5",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7",
-    "vercel": "^41.6.1"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@esbuild-kit/core-utils": "^3.3.2",
+    "@esbuild-kit/esm-loader": "^2.6.5",
     "@types/react": "19.1.1",
     "cross-env": "^7.0.3",
     "drizzle-kit": "^0.18.1",
+    "esbuild": "^0.25.2",
     "eslint": "9.23.0",
     "eslint-config-next": "15.2.4",
     "postcss": "^8",
