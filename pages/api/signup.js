@@ -1,5 +1,5 @@
-import connectDB from "@/lib/mongodb";
-import User from "@/models/User";
+import connectDB from "../../lib/mongodb";
+import User from "../../models/User";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") return res.status(405).json({ message: "Method not allowed" });
@@ -14,4 +14,4 @@ export default async function handler(req, res) {
     await user.save();
 
     res.status(201).json({ message: "Signup successful!", user });
-} 
+}

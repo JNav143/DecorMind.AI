@@ -1,5 +1,5 @@
-import connectDB from "@/lib/mongodb";
-import User from "@/models/User";
+import connectDB from "../../lib/mongodb";
+import User from "../../models/User";
 
 const planCredits = {
     free: 2,
@@ -21,4 +21,4 @@ export default async function handler(req, res) {
     await user.save();
 
     res.json({ message: `Upgraded to ${newPlan} plan`, user });
-} 
+}
