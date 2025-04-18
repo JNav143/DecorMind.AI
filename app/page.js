@@ -11,12 +11,7 @@ import RoomTransformationsCarousel from './_components/RoomTransformationsCarous
 
 // Simple loading component
 const Loading = () => (
-  <div className="min-h-screen bg-black text-white flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <p className="text-white">Loading DecorMind...</p>
-    </div>
-  </div>
+  <div id="loader"></div>
 );
 
 // Client-side only component with no SSR
@@ -236,6 +231,7 @@ function HomeContent() {
           position: relative;
           transition: all 0.3s ease;
           --nav-underline-width: 0;
+          opacity: 1; /* Set links to be visible by default */
         }
         
         .nav-link::after {
@@ -291,6 +287,16 @@ function HomeContent() {
 
         .nav-link:nth-child(5) {
           animation: fadeInDown 0.5s ease-out 0.5s forwards;
+          opacity: 0;
+        }
+        
+        .nav-link:nth-child(6) {
+          animation: fadeInDown 0.5s ease-out 0.6s forwards;
+          opacity: 0;
+        }
+        
+        .nav-link:nth-child(7) {
+          animation: fadeInDown 0.5s ease-out 0.7s forwards;
           opacity: 0;
         }
 
@@ -535,17 +541,17 @@ function HomeContent() {
           <span className="w-6 h-0.5 bg-white"></span>
         </button>
         {/* Desktop Navigation */}
-        <div className="desktop-nav absolute left-1/2 transform -translate-x-1/2 gap-8 text-sm">
+        <div className="hidden md:flex desktop-nav absolute left-1/2 transform -translate-x-1/2 gap-4 md:gap-8 text-sm">
           <a href="#top" className="nav-link text-cyan-400 transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-cyan-400">Home</a>
           <a href="#features" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Features</a>
           <a href="#how-it-works" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">How it Works</a>
           <a href="#Tutorial Video" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Tutorial Video</a>
           <a href="#gallery" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Gallery</a>
-          <Link href="/pricing" className="hover:text-cyan-400 text-white transition-colors duration-300 relative">Pricing</Link>
-          <Link href="/contact-us" className="hover:text-cyan-400 text-white transition-colors duration-300 relative">Contact Us</Link>
+          <Link href="/pricing" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Pricing</Link>
+          <Link href="/contact-us" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Contact Us</Link>
         </div>
         {/* Desktop Buttons */}
-        <div className="desktop-nav-buttons gap-2">
+        <div className="hidden md:flex desktop-nav-buttons gap-2">
           <button
             className="text-white border border-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-md text-sm transition-colors"
             onClick={handleSignIn}
@@ -568,8 +574,8 @@ function HomeContent() {
         <a href="#how-it-works" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>How it Works</a>
         <a href="#Tutorial Video" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Tutorial Video</a>
         <a href="#gallery" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Gallery</a>
-        <Link href="/pricing" className="py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
-        <Link href="/contact-us" className="py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
+        <Link href="/pricing" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
+        <Link href="/contact-us" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
         <div className="flex gap-2 mt-4 w-full justify-center">
           <button
             className="text-white border border-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-md text-sm transition-colors"
@@ -669,7 +675,7 @@ function HomeContent() {
       </div>
 
       {/* Room Transformations Showcase Section */}
-      <div id="room-showcase" className="py-16 bg-zinc-900">
+      <div id="room-showcase" className="py-16 bg-black">
         <div className="container mx-auto px-6">
           <RoomTransformationsCarousel
             onSeeMoreClick={(roomType) => {
@@ -773,9 +779,9 @@ function HomeContent() {
         <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-8">Watch How It Works</h3>
         <p className="text-center text-white mb-8 max-w-2xl mx-auto">See DecorMind in action with our step-by-step tutorial video</p>
         <div className="max-w-4xl mx-auto aspect-video relative rounded-lg overflow-hidden border border-zinc-800">
-          <video 
+          <video
             className="w-full h-full"
-            src="/videos/tutorial-video.mp4" 
+            src="/videos/tutorial-video.mp4"
             title="DecorMind Tutorial Video"
             controls
             autoPlay={false}
@@ -861,7 +867,7 @@ function HomeContent() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 px-6 text-center bg-black">
+      <div className="py-16 px-6 text-center bg-black" id="cta">
         <h3 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
         <p className="text-white mb-8 max-w-2xl mx-auto">
           Join thousands of happy customers who have reimagined their homes with DecorMind.
@@ -874,7 +880,7 @@ function HomeContent() {
       {/* Contact Section Removed - Now available as a separate page */}
 
       {/* Footer */}
-      <footer className="bg-black py-10 px-6 border-t border-zinc-800">
+      <footer className="bg-black py-10 px-6 border-t border-zinc-800" id="footer">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
